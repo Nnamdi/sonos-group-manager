@@ -39,11 +39,11 @@
 #  Turn on/off logging of messages/actions to stdout.  The default
 #  is 0.
 #
-export SONOS_GM_ENABLE_LOGGING=1
+#  export SONOS_GM_ENABLE_LOGGING=0
 
 #  The path to store the PID file. The default is /tmp.
 #
 #  export SONOS_GM_PID_FILE_PATH=/tmp
 
-./sonos-group-manager.py
+nohup ./sonos-group-manager.py > /tmp/sonos-group-manager.log 2>&1 &
 

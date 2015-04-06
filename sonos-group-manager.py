@@ -102,8 +102,18 @@ class Topology:
         return ", ".join([print_group(c, m) for c, m in self.groups.iteritems()])
 
     def configure(self):
-        # TODO
         log("SETTING TOPOLOGY: " + self.__str__())
+
+        for group in self.groups:
+            master = soco.SoCo(group)
+
+            if group not in self.groups.keys():
+                master.unjoin()
+
+            for slave_address in self.groups[group]:
+                if slave_address != group:
+                    slave = soco.SoCo(slave_address)
+                    slave.join(master)
 
 
 class TopologyMonitor:
